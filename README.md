@@ -54,3 +54,4 @@ src/
 - The OpenRouter API key only ever lives server-side; the browser talks exclusively to `/api/chat`.
 - Server-Sent Events from OpenRouter are normalized into a plain `text/plain` stream the client can read with `ReadableStream`.
 - Rate limits (`src/lib/rateLimit.ts`) use an in-memory store. On Netlify Functions this resets per cold-start instance — for higher-traffic production, swap in Upstash Redis and keep the same `RateLimitStore` interface.
+
