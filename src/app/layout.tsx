@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { MotionProvider } from "@/components/MotionProvider";
+import { profile } from "@/lib/data";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,16 +26,25 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
 
+const pageTitle = `${profile.name} — AI Engineer`;
+
 export const metadata: Metadata = {
-  title: "Cortney Bowman — AI Engineer",
-  description:
-    "AI Engineer building production-grade LLM, RAG, and edge AI systems. U.S. Air Force veteran. Security & Awareness Analyst @ Centene.",
+  title: pageTitle,
+  description: profile.tagline,
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Cortney Bowman — AI Engineer",
-    description:
-      "Building production-grade AI systems at the intersection of LLMs, retrieval, and security.",
+    title: pageTitle,
+    description: profile.tagline,
     type: "website",
+    url: "/",
+    siteName: profile.name,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: profile.tagline,
   },
 };
 
