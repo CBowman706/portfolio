@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { MotionProvider } from "@/components/MotionProvider";
-import { profile } from "@/lib/data";
+import { profile, education, skills } from "@/lib/data";
 import "./globals.css";
 
 const inter = Inter({
@@ -53,6 +53,39 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
+/**
+ * Schema.org Person JSON-LD. Pulled from src/lib/data.ts so a single source
+ * of truth drives both the rendered site and the structured data Google
+ * uses for rich-result eligibility on personal-brand queries.
+ */
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  givenName: profile.firstName,
+  familyName: profile.lastName,
+  jobTitle: profile.title,
+  description: profile.tagline,
+  email: `mailto:${profile.email}`,
+  ...(siteUrl ? { url: siteUrl, image: `${siteUrl}/opengraph-image` } : {}),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Charlotte",
+    addressRegion: "NC",
+    addressCountry: "US",
+  },
+  worksFor: {
+    "@type": "Organization",
+    name: "Centene Corporation",
+  },
+  alumniOf: education.map((e) => ({
+    "@type": "EducationalOrganization",
+    name: e.school,
+  })),
+  knowsAbout: skills.flatMap((g) => g.items),
+  sameAs: [profile.linkedin].filter(Boolean),
+} as const;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -62,6 +95,10 @@ export default function RootLayout({
       className={`${inter.variable} ${mono.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

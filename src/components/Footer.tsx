@@ -26,7 +26,7 @@ export function Footer() {
           >
             LinkedIn
           </a>
-          <span className="font-mono text-xs text-subtle">
+          <span className="font-mono text-xs text-muted">
             © {new Date().getFullYear()} — Built with Next.js
           </span>
         </div>
