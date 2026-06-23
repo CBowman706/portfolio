@@ -105,6 +105,15 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+    title: "Agentic Phishing Triage System",
+    description:
+      "LangGraph-orchestrated multi-agent pipeline that ingests a raw email and returns a 0–100 risk score with a plain-language verdict. Specialized agents handle header forensics (SPF/DKIM/DMARC), social-engineering analysis, and verdict synthesis. Cleanly separated phishing from legitimate mail (99/97 malicious vs. 5/4 benign) and caught a BEC gift-card scam that passed email authentication — proving content analysis matters alongside headers. Built with explicit data/instruction separation as an adversarial-security design.",
+    tags: ["LangGraph", "Multi-Agent", "Claude", "OpenRouter", "Python"],
+    status: "Live",
+    href: "https://github.com/CBowman706/agentic-phishing-triage",
+    metric: "99 vs 5",
+  },
+  {
     title: "Edge AI Home Security Platform",
     description:
       "Production-grade surveillance running entirely on local hardware. Reolink PoE camera streams into a Raspberry Pi 5 and Hailo-8 NPU executing YOLOv8s at 25fps with ~100ms inference. GStreamer pipeline, SQLite event logging, Flask REST API (9 endpoints), Telegram alerts, and systemd services. Tuned with persistence buffers and ROI masking to suppress false positives.",

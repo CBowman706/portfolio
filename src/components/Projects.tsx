@@ -89,6 +89,18 @@ export function Projects() {
                   </span>
                 ))}
               </div>
+
+              {p.href && (
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-1.5 self-start text-[11px] font-mono text-muted hover:text-accent transition-colors"
+                >
+                  <span>View project</span>
+                  <span aria-hidden>↗</span>
+                </a>
+              )}
             </motion.article>
           ))}
 
