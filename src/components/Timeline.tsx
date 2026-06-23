@@ -19,7 +19,7 @@ export function Timeline() {
               <span className="text-accent">the frontier.</span>
             </>
           }
-          description="Twenty years of building, defending, and now teaching machines to do the same. Every role compounds — military discipline, fleet-scale data systems, enterprise security, and now applied AI."
+          description="Air Force veteran with five years in cybersecurity — now building AI with an adversary in mind. Every role compounds — military discipline, fleet-scale data systems, enterprise security, and now applied AI."
         />
 
         <div className="mt-20 relative">
